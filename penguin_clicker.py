@@ -408,7 +408,7 @@ def save_config(cfg):
 # ---------------------------------------------------------------- UI
 
 CSS = """
-window.pc { background: #f6f1e6; color: #1a1614; }
+window.pc { background: #1a1614; color: #f0ece2; }
 window.pc label, window.pc button, window.pc text, window.pc entry {
   font-family: "JetBrains Mono", "Noto Naskh Arabic", monospace;
 }
@@ -418,66 +418,66 @@ window.pc button.pc-pill label, window.pc button.pc-seg label, window.pc button.
   font-family: "Kalam", "Noto Naskh Arabic", cursive;
 }
 .pc-title { font-size: 30px; font-weight: 700; }
-.pc-sub { font-size: 11.5px; color: #8a807a; }
-.pc-card { background: #fbf7ec; border: 1.5px solid #d9d0c0; border-radius: 16px; padding: 8px 14px 12px 14px; }
+.pc-sub { font-size: 11.5px; color: #8a8278; }
+.pc-card { background: #221d1a; border: 1.5px solid #3a332e; border-radius: 16px; padding: 8px 14px 12px 14px; }
 .pc-section { font-size: 20px; font-weight: 700; }
-.pc-field { font-size: 12.5px; color: #4a423d; }
-.pc-muted { font-size: 11px; color: #8a807a; }
-.pc-error { font-size: 11.5px; color: #c2401f; }
+.pc-field { font-size: 12.5px; color: #c8c1b3; }
+.pc-muted { font-size: 11px; color: #8a8278; }
+.pc-error { font-size: 11.5px; color: #ff7a59; }
 
-.pc-status { background: #fbf7ec; border: 1.5px solid #d9d0c0; border-radius: 16px; padding: 10px 16px; }
-.pc-status.on { background: #fbe3da; border-color: #d94d2a; }
-.pc-status.wait { background: #fcf0c8; border-color: #f0c12b; }
-.pc-dot { font-size: 16px; color: #c8c1b3; }
-.pc-status.on .pc-dot { color: #d94d2a; }
-.pc-status.wait .pc-dot { color: #e0a800; }
+.pc-status { background: #221d1a; border: 1.5px solid #3a332e; border-radius: 16px; padding: 10px 16px; }
+.pc-status.on { background: #3a1d14; border-color: #d94d2a; }
+.pc-status.wait { background: #3a3014; border-color: #f0c12b; }
+.pc-dot { font-size: 16px; color: #5a524b; }
+.pc-status.on .pc-dot { color: #ff7a59; }
+.pc-status.wait .pc-dot { color: #f0c12b; }
 .pc-state { font-size: 24px; font-weight: 700; }
-.pc-count { font-size: 12.5px; color: #4a423d; }
+.pc-count { font-size: 12.5px; color: #c8c1b3; }
 
 button.pc-pill, button.pc-seg, button.pc-keycap {
-  background: transparent; background-image: none; color: #1a1614; border: 1.5px solid #1a1614;
+  background: transparent; background-image: none; color: #f0ece2; border: 1.5px solid #c8c1b3;
   box-shadow: none; text-shadow: none; min-height: 0; outline-color: #d94d2a;
 }
 button.pc-pill { border-radius: 999px; padding: 1px 12px; font-size: 16px; }
 button.pc-seg { border-radius: 12px; padding: 4px 10px; font-size: 18px; font-weight: 700; }
-button.pc-pill:hover, button.pc-seg:hover, button.pc-keycap:hover { background: rgba(26, 22, 20, 0.06); }
-button.pc-pill:checked, button.pc-seg:checked { background: #f5cfc0; }
+button.pc-pill:hover, button.pc-seg:hover, button.pc-keycap:hover { background: rgba(240, 236, 226, 0.07); }
+button.pc-pill:checked, button.pc-seg:checked { background: rgba(217, 77, 42, 0.32); border-color: #ff7a59; }
 button.pc-keycap {
-  background: #fffdf7; border-radius: 9px; border-bottom-width: 3.5px; padding: 3px 14px;
+  background: #2a2420; border-radius: 9px; border-bottom-width: 3.5px; padding: 3px 14px;
   font-size: 13px; font-weight: 700; min-width: 96px;
 }
-button.pc-keycap.capturing { background: #fcf0c8; border-color: #e0a800; }
+button.pc-keycap.capturing { background: #3a3014; border-color: #f0c12b; color: #f0c12b; }
 
 button.pc-go {
-  border-radius: 18px; padding: 8px 18px; font-size: 26px; font-weight: 700; border: 1.5px solid #1a1614;
+  border-radius: 18px; padding: 8px 18px; font-size: 26px; font-weight: 700; border: 1.5px solid #f0ece2;
   border-bottom-width: 4px; background: #d94d2a; background-image: none; color: #fffdf7; box-shadow: none; text-shadow: none;
 }
 button.pc-go:hover { background: #e25a37; }
-button.pc-go.stop { background: #1a1614; color: #f6f1e6; }
+button.pc-go.stop { background: #f0ece2; color: #1a1614; }
 button.pc-go.wait { background: #f0c12b; color: #1a1614; }
 
-.pc-banner { background: #fcf0c8; border: 1.5px solid #e0a800; border-radius: 14px; padding: 10px 14px; }
-.pc-banner-title { font-size: 18px; font-weight: 700; }
-.pc-banner label.pc-field { color: #4a423d; }
+.pc-banner { background: #3a3014; border: 1.5px solid #f0c12b; border-radius: 14px; padding: 10px 14px; }
+.pc-banner-title { font-size: 18px; font-weight: 700; color: #f0c12b; }
+.pc-banner label.pc-field { color: #e8dfc4; }
 button.pc-allow {
-  background: #f0c12b; background-image: none; color: #1a1614; border: 1.5px solid #1a1614; border-radius: 999px;
+  background: #f0c12b; background-image: none; color: #1a1614; border: none; border-radius: 999px;
   padding: 2px 16px; font-size: 17px; font-weight: 700; box-shadow: none;
 }
 
 spinbutton {
-  background: #fffdf7; color: #1a1614; border: 1.5px solid #d9d0c0; border-radius: 10px; box-shadow: none;
+  background: #2a2420; color: #f0ece2; border: 1.5px solid #3a332e; border-radius: 10px; box-shadow: none;
 }
-spinbutton > text { color: #1a1614; font-size: 13px; }
+spinbutton > text { color: #f0ece2; font-size: 13px; }
 spinbutton > button {
-  background: transparent; background-image: none; color: #1a1614; border: none; box-shadow: none;
+  background: transparent; background-image: none; color: #f0ece2; border: none; box-shadow: none;
 }
-spinbutton > button:hover { background: rgba(26, 22, 20, 0.06); }
+spinbutton > button:hover { background: rgba(240, 236, 226, 0.07); }
 dropdown > button {
-  background: #fffdf7; background-image: none; color: #1a1614; border: 1.5px solid #d9d0c0; border-radius: 10px;
+  background: #2a2420; background-image: none; color: #f0ece2; border: 1.5px solid #3a332e; border-radius: 10px;
   box-shadow: none;
 }
-popover > contents { background: #fbf7ec; color: #1a1614; border: 1.5px solid #1a1614; border-radius: 12px; }
-popover listview > row:selected, popover listview > row:hover { background: #f5cfc0; color: #1a1614; }
+popover > contents { background: #221d1a; color: #f0ece2; border: 1.5px solid #3a332e; border-radius: 12px; }
+popover listview > row:selected, popover listview > row:hover { background: rgba(217, 77, 42, 0.32); color: #f0ece2; }
 flowboxchild { padding: 0; }
 """
 
@@ -1088,7 +1088,7 @@ class ClickerApp(Gtk.Application):
         if self.win is None:
             settings = Gtk.Settings.get_default()
             if settings:
-                settings.set_property("gtk-application-prefer-dark-theme", False)
+                settings.set_property("gtk-application-prefer-dark-theme", True)
             provider = Gtk.CssProvider()
             provider.load_from_string(CSS) if hasattr(provider, "load_from_string") else provider.load_from_data(CSS.encode())
             Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), provider,
