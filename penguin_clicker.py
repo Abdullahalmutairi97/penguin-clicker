@@ -61,7 +61,7 @@ T = {
     "double": ("Double", "مزدوجة"),
     "key_to_press": ("Key to press", "الزر المطلوب"),
     "press_a_key": ("Press a key…", "اضغط أي زر…"),
-    "press_a_key_or_btn": ("Press a key or mouse side button…", "اضغط زرًا أو زر الفأرة الجانبي…"),
+    "press_a_key_or_btn": ("Press a key…", "اضغط زرًا…"),
     "not_set": ("Click to choose", "اضغط للاختيار"),
     "every": ("How often", "كل كم؟"),
     "custom": ("Custom", "مخصص"),
@@ -72,10 +72,12 @@ T = {
     "shortcuts": ("Shortcuts", "الاختصارات"),
     "start_key": ("Start", "زر التشغيل"),
     "stop_key": ("Stop", "زر الإيقاف"),
-    "same_key_note": ("Same key for both = on/off toggle.", "نفس الزر للاثنين = تشغيل وإيقاف."),
+    "same_key_note": ("Mouse side buttons work too. Same key for both = on/off toggle.",
+                      "أزرار الفأرة الجانبية تعمل أيضًا. نفس الزر للاثنين = تشغيل وإيقاف."),
     "start": ("Start", "تشغيل"),
     "stop": ("Stop", "إيقاف"),
     "cancel": ("Cancel", "إلغاء"),
+    "change": ("Change", "تغيير"),
     "perm_title": ("One-time setup needed", "يلزم إعداد لمرة واحدة"),
     "perm_body": ("Lets it click, type and hear your shortcuts in other apps.",
                   "ليتمكن من النقر والضغط وسماع الاختصارات في البرامج الأخرى."),
@@ -676,8 +678,16 @@ class ClickerWindow(Gtk.ApplicationWindow):
         card, body = self._card(self.t("shortcuts"))
         self.start_key_btn = self._keycap("start_hotkey")
         self.stop_key_btn = self._keycap("stop_hotkey")
-        body.append(self._row(self.t("start_key"), self.start_key_btn))
-        body.append(self._row(self.t("stop_key"), self.stop_key_btn))
+        self.change_btns = {}
+        for which, label, cap in (("start_hotkey", "start_key", self.start_key_btn),
+                                  ("stop_hotkey", "stop_key", self.stop_key_btn)):
+            change = Gtk.Button(valign=Gtk.Align.CENTER)
+            change.add_css_class("pc-pill")
+            change.connect("clicked", lambda _b, w=which: self._begin_capture(w))
+            self.change_btns[which] = change
+            row = self._row(self.t(label), cap)
+            row.append(change)
+            body.append(row)
         note = Gtk.Label(label=self.t("same_key_note"), xalign=0, wrap=True, max_width_chars=24)
         note.add_css_class("pc-muted")
         body.append(note)
@@ -776,6 +786,8 @@ class ClickerWindow(Gtk.ApplicationWindow):
             else:
                 btn.set_label(combo_label(cfg[which]) or self.t("not_set"))
                 btn.remove_css_class("capturing")
+        for which, change in self.change_btns.items():
+            change.set_label(self.t("cancel") if self.capturing == which else self.t("change"))
 
         inject_ok = self.injector.ready()
         global_ok = self.hotkeys_global()
